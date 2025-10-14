@@ -17,7 +17,7 @@ jobs:
           DISCORD: ${{ secrets.DISCORD_URL }}
           API: ${{ secrets.WEATHER_API_KEY }}
         run: |
-          python ./scripts/version_bump.py --discord=$DISCORD --api=$API
+          python ./main.py --discord=$DISCORD --api=$API
 
       - name: commit
         run: |
