@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
 jobs:
   checkWeather:
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
