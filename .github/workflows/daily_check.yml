@@ -1,0 +1,28 @@
+name: APM Android dev Build
+on:
+  schedule:
+    - cron: "30 13 * * 1-5"
+  workflow_dispatch:
+jobs:
+  checkWeather:
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: run
+        env:
+          DISCORD: ${{ secrets.DISCORD_URL }}
+          API: ${{ secrets.WEATHER_API_KEY }}
+        run: |
+          python ./scripts/version_bump.py --discord=${$DISCORD} --api=${$API}
+
+      - name: commit
+        run: |
+          git config --global user.email 106490582+lovegaoshi@users.noreply.github.com
+          git config --global user.name lovegaoshi
+          git commit -m "job" -a
+
+      - name: Push changes to master
+        uses: ad-m/github-push-action@master
