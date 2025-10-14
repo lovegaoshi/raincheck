@@ -7,7 +7,7 @@ jobs:
   checkWeather:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -18,12 +18,3 @@ jobs:
           API: ${{ secrets.WEATHER_API_KEY }}
         run: |
           python ./main.py --discord=$DISCORD --api=$API
-
-      - name: commit
-        run: |
-          git config --global user.email 106490582+lovegaoshi@users.noreply.github.com
-          git config --global user.name lovegaoshi
-          git commit -m "job" -a
-
-      - name: Push changes to master
-        uses: ad-m/github-push-action@master
